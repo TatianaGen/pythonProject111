@@ -12,7 +12,8 @@ class Category:
         self.products = products
 
         Category.category_count += 1
-        Category.products_count += 1
+        Category.products_count += len(self.products)
+
 
     def get_name(self):
         return self.name
