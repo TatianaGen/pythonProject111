@@ -1,7 +1,5 @@
+
 class Category:
-    name: str
-    description: str
-    products: str
 
     category_count = 0
     products_count = 0
@@ -9,17 +7,32 @@ class Category:
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.products = products
-
+        self.__products = products
         Category.category_count += 1
         Category.products_count += len(self.products)
 
+    def __len__(self):
+        result = 0
+        for i in self.__products:
+            result += i.quantity
+        return result
 
-    def get_name(self):
-        return self.name
+    def __str__(self):
+        return f'{self.name}, количество продуктов: {len(self)} шт.'
 
-    def get_description(self):
-        return self.description
+    @property
+    def products(self):
+        products_list = ()
+        for item in self.__products:
+            products_list.append(f'{item.name}, {item.price} руб. Остаток:{item.quantity} шт.')
+        return products_list
 
-    def get_products(self):
-        return self.products
+
+    @products.setter
+    def products(self, product):
+        self.__products.append(product)
+
+
+    @property
+    def products_list(self):
+        return self.__products
