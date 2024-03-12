@@ -2,6 +2,9 @@ class Product:
     """
      Класс товаров
     """
+    name: str
+    description: str
+    price: float
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
@@ -10,16 +13,19 @@ class Product:
 
 
 
-
     @classmethod
     def new_product(cls, name, description, price, quantity, products):
-        for i in products:
-            if name == i.name:
-                i.quantity += quantity
-                if price < i._price:
-                    i._price = price
-            else:
-                return cls(name, description, price, quantity)
+        cls.name = name
+        cls.description = description
+        cls._price = price
+        cls.quantity = quantity
+        if cls.name == products.name:
+            cls.quantity += products.quantity
+            if cls._price < products._price:
+                cls._price = products._price
+        return cls
+
+
     @property
     def price(self):
         return self._price
