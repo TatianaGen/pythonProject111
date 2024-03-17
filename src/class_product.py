@@ -14,16 +14,8 @@ class Product:
 
 
     @classmethod
-    def new_product(cls, name, description, price, quantity, products):
-        cls.name = name
-        cls.description = description
-        cls._price = price
-        cls.quantity = quantity
-        if cls.name == products.name:
-            cls.quantity += products.quantity
-            if cls._price < products._price:
-                cls._price = products._price
-        return cls
+    def new_product(cls, name, description, price, quantity):
+        return cls(name, description, price, quantity)
 
 
     @property
