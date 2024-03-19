@@ -16,6 +16,18 @@ class Category:
         Category.category_count += 1
         Category.products_count += len(self.__products)
 
+    def __repr__(self):
+        return f'Caegory {self.name}, {self.description}, {self.__products}'
+
+    def __len__(self):
+        result = 0
+        for i in self.__products:
+            result += i.quantity
+        return result
+
+    def __str__(self):
+        return f'{self.name}, количество продуктов: {self.__len__()} шт.'
+
 
 
     @property

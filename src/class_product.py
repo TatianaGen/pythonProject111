@@ -8,9 +8,14 @@ class Product:
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
-        self._price = price
+        self.__price = price
         self.quantity = quantity
 
+    def __repr__(self):
+        return f'Product {self.name}, {self.description}, {self.__price}, {self.quantity}'
+
+    def __str__(self):
+        return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.'
 
 
     @classmethod
@@ -20,10 +25,10 @@ class Product:
 
     @property
     def price(self):
-        return self._price
+        return self.__price
     @price.setter
     def price(self, new_price):
-        if new_price < 0 or new_price == self._price:
+        if new_price < 0 or new_price == self.__price:
             print('Введена некорректная цена!')
         elif new_price < self._price:
             user_answer = input('Если вы хотите поменять цену введите: y, иначе n')
@@ -33,3 +38,11 @@ class Product:
                 print("Введите корректный ответ, пожалуйста!")
         else:
             self._price = new_price
+
+
+    def add_product(self, list_of_products):
+        for prod in list_of_products:
+            if prod.name == self.name:
+                prod.quantity += self.quantity
+                if self.price > prod.price:
+                    prod.price = self.price
