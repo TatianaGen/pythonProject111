@@ -18,6 +18,9 @@ class Product:
         return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.'
 
 
+    def __add__(self, other):
+        return (self.price * self.quantity) + (other.price * other.quantity)
+
     @classmethod
     def new_product(cls, name, description, price, quantity):
         return cls(name, description, price, quantity)
@@ -38,11 +41,3 @@ class Product:
                 print("Введите корректный ответ, пожалуйста!")
         else:
             self._price = new_price
-
-
-    def add_product(self, list_of_products):
-        for prod in list_of_products:
-            if prod.name == self.name:
-                prod.quantity += self.quantity
-                if self.price > prod.price:
-                    prod.price = self.price
