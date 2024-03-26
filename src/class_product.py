@@ -1,10 +1,20 @@
-class Product:
+from abc import ABC, abstractmethod
+from mixin import MixinShow
+
+class BaseProduct(ABC):
+    """
+     Абстрактный класс товаров
+    """
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class Product(BaseProduct, MixinShow):
     """
      Класс товаров
     """
-    name: str
-    description: str
-    price: float
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
@@ -51,7 +61,7 @@ class Product:
             self._price = new_price
 
 
-class SmartPhone(Product):
+class SmartPhone(Product, MixinShow):
     def __init__(self, name, description, price, quantity, performance, model, memory, color):
         super().__init__(name, description, price, quantity)
         self.performance = performance
@@ -60,9 +70,11 @@ class SmartPhone(Product):
         self.color = color
 
 
-class LawnGrass(Product):
+
+class LawnGrass(Product, MixinShow):
     def __init__(self, name, description, price, quantity, manufacturer, germination, color):
         super().__init__(name, description, price, quantity)
         self.manufacturer = manufacturer
         self.germination = germination
         self.color = color
+

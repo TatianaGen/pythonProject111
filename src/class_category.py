@@ -1,4 +1,7 @@
-from src.class_product import Product
+
+from class_product import Product
+
+
 class Category:
     '''
     Класс категорий товаров
