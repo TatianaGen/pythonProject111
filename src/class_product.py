@@ -30,10 +30,8 @@ class Product(BaseProduct, MixinShow):
 
 
     def __add__(self, other):
-        result = (self.__price * self.quantity) + (other.__price * other.quantity)
-        return result
         if type(self) == type(other):
-            result = (self.__price * self.quantity) + (other.__price * other.quantity)
+            result = (self._price * self.quantity) + (other._price * other.quantity)
             return result
         else:
             raise TypeError('Можно складывать только экземпляры одного и того же класса!')
